@@ -1,0 +1,2 @@
+#API
+http://api.exchangeratesapi.io/v1/2013-12-24?access_key=51c96297a100c0fe9be7e64d682e577a&base=EUR&symbols=USD
