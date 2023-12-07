@@ -15,8 +15,8 @@ public class ExchangeRate {
     }
 
     private Rate updateRate() {
-        Double valueFrom = (this.From.referenceValue()*1000);
-        Double valueTo = (this.To.referenceValue()*1000);
+        Double valueFrom = (this.From.referenceRate()*1000);
+        Double valueTo = (this.To.referenceRate()*1000);
         return new Rate(
                 (valueTo/valueFrom),
                 LocalDateTime.now()

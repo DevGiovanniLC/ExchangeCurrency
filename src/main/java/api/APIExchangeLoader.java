@@ -1,4 +1,4 @@
-package API;
+package api;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import Interfaces.ExchangeLoader;
+import interfaces.ExchangeLoader;
 import model.Currency;
 import model.ExchangeRate;
 
@@ -21,26 +21,27 @@ public class APIExchangeLoader implements ExchangeLoader {
     private Map<String,Double> currencyMap;
 
     public APIExchangeLoader(){
-        updateCurrencyMap();
+        updateCurrencyMap("latest");
     }
 
-    public Map<String,Double> updateCurrencyMap() {
-        this.currencyMap = loadCurrencyMap();
+    public Map<String,Double> updateCurrencyMap(String date) {
+        this.currencyMap = loadCurrencyMap(date);
         return this.currencyMap;
     }
 
 
-    private Map<String,Double> loadCurrencyMap() {
+    private Map<String,Double> loadCurrencyMap(String date) {
         try {
-            String json = loadJson();
+            String json = loadJson(date
+            );
             return toCurrencyMap(json);
         } catch (IOException e) {
             return Collections.emptyMap();
         }
     }
 
-    private String loadJson() throws IOException {
-        URL url = new URL("http://api.exchangeratesapi.io/v1/2013-12-24?access_key=51c96297a100c0fe9be7e64d682e577a&base=EUR");
+    private String loadJson(String date) throws IOException {
+        URL url = new URL(String.format("http://api.exchangeratesapi.io/v1/%s?access_key=51c96297a100c0fe9be7e64d682e577a&base=EUR",date));
         try (InputStream is = url.openStream()) {
             return new String(is.readAllBytes());
         }

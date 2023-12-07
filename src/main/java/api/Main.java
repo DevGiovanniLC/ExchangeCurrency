@@ -1,6 +1,6 @@
-package API;
+package api;
 
-import Interfaces.ExchangeLoader;
+import interfaces.ExchangeLoader;
 
 public class Main {
     public static void main(String[] args) {
