@@ -1,8 +1,7 @@
 package swing;
 
 import swing.components.CalendarLabel;
-import swing.components.ComboLabel;
-import swing.components.TextLabel;
+import swing.components.CurrencyPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,42 +10,40 @@ import java.util.List;
 
 public class MainPanel extends JPanel{
 
-    private final JPanel form;
-    private final Color backgroundColor;
-    private final TextLabel textLabel;
-    private final ComboLabel comboLabelFrom;
-    private final ComboLabel comboLabelTo;
+    private final CurrencyPanel currencyPanel;
     private final CalendarLabel selectedDate;
+    private final JPanel selectionPanel;
+    private final JButton button;
 
-    public MainPanel() {
+    public MainPanel(List<String> currencyList) {
         super(true);
-        setLayout(new FlowLayout());
-        setBackground(this.backgroundColor = new Color(28,28,28));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBackground(new Color(28,28,28));
 
-        form = new JPanel();
-        this.textLabel = new TextLabel("Money");
-        this.comboLabelFrom = new ComboLabel("From Currency", List.of("USD", "EUR"));
-        this.comboLabelTo = new ComboLabel("To Currency", List.of("USD", "EUR"));
+        this.currencyPanel = new CurrencyPanel(currencyList);
+        this.selectionPanel = new JPanel();
         this.selectedDate = new CalendarLabel("Selected Date");
-        customizeForm();
+        this.button = new JButton("Exchange");
+        this.button.setFont(new Font("Arial", Font.BOLD, 25));
+        customizeSelectionPanel(selectionPanel);
         initializeComponents();
     }
 
-    private void customizeForm() {
-
-        form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
-        form.setBorder(new EmptyBorder(30,5,5,5));
-        form.setBackground(backgroundColor);
+    private void customizeSelectionPanel(JPanel panel) {
+        panel.setLayout(new FlowLayout());
+        panel.setBorder(new EmptyBorder(0,15,0,25));
+        panel.setBackground(new Color(28,28,28));
     }
 
-    private void initializeComponents() {
-        this.add(this.form);
-        form.add(this.textLabel);
-        form.add(this.comboLabelFrom);
-        form.add(this.comboLabelTo);
-        form.add(this.selectedDate);
-        setVisible(true);
 
+
+    private void initializeComponents() {
+
+        add(this.currencyPanel);
+        add(this.selectionPanel);
+        selectionPanel.add(selectedDate);
+        selectionPanel.add(button);
+        setVisible(true);
     }
 
     public String getSelectedDate(){

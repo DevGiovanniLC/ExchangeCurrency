@@ -10,8 +10,9 @@ public class ComboLabel extends JPanel {
     Label label;
 
     public ComboLabel(String text, List<String> elements) {
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(new EmptyBorder(0,0,10,0));
         setBackground(new Color(28,28,28));
-        setBorder(new EmptyBorder(10,0,10,0));
 
         this.label = new Label(text + ": ");
         this.comboBox = new JComboBox<>(elements.toArray(new String[0]));

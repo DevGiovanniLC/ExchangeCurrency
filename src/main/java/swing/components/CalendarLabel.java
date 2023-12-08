@@ -15,8 +15,8 @@ public class CalendarLabel extends JPanel {
 
     public CalendarLabel(String text) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(new EmptyBorder(0,0,0,50));
         setBackground(new Color(28,28,28));
-        setBorder(new EmptyBorder(10,0,10,0));
 
         this.label = new Label(text + ": ");
         this.model = new UtilDateModel();

@@ -3,9 +3,8 @@ package api;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import interfaces.ExchangeLoader;
 import model.Currency;
@@ -24,11 +23,24 @@ public class APIExchangeLoader implements ExchangeLoader {
         updateCurrencyMap("latest");
     }
 
+    @Override
     public Map<String,Double> updateCurrencyMap(String date) {
         this.currencyMap = loadCurrencyMap(date);
         return this.currencyMap;
     }
 
+    @Override
+    public ExchangeRate load(String from, String to) {
+        return new ExchangeRate(
+           new Currency(from,currencyMap.get(from)),
+           new Currency(to, currencyMap.get(to))
+        );
+    }
+
+    public List<String> getCurrencyList(){
+
+        return new ArrayList<>(this.currencyMap.keySet());
+    }
 
     private Map<String,Double> loadCurrencyMap(String date) {
         try {
@@ -55,11 +67,4 @@ public class APIExchangeLoader implements ExchangeLoader {
         return result;
     }
 
-    @Override
-    public ExchangeRate load(String from, String to) {
-        return new ExchangeRate(
-           new Currency(from,currencyMap.get(from)),
-           new Currency(to, currencyMap.get(to))
-        );
-    }
 }

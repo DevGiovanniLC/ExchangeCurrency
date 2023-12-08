@@ -10,13 +10,19 @@ public class TextLabel extends JPanel {
 
     public TextLabel(String text) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(new EmptyBorder(10,0,0,0));
         setBackground(new Color(28,28,28));
-        setBorder(new EmptyBorder(10,0,10,0));
+
 
         this.label = new Label(text + ": ");
         this.textField = new JTextField();
         customizeComponents();
         initializeComponents();
+    }
+
+    public TextLabel setEditable(boolean bool){
+        textField.setFocusable(bool);
+        return this;
     }
 
     private void customizeComponents() {
@@ -29,5 +35,7 @@ public class TextLabel extends JPanel {
         add(this.textField);
         setVisible(true);
     }
+
+
 
 }
