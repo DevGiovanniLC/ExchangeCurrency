@@ -1,4 +1,7 @@
-package swing.components;
+package swing;
+
+import swing.components.ComboLabel;
+import swing.components.TextLabel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -16,7 +19,7 @@ public class CurrencyPanel extends JPanel {
     public CurrencyPanel(List<String> currencyList) {
         super();
         setLayout(new FlowLayout());
-        setBorder(new EmptyBorder(50,5,-30,5));
+        setBorder(new EmptyBorder(50,5,50,5));
         setBackground(new Color(28,28,28));
         toCurrencyForm = new JPanel();
         fromCurrencyForm = new JPanel();

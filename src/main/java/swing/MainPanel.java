@@ -1,7 +1,6 @@
 package swing;
 
 import swing.components.CalendarLabel;
-import swing.components.CurrencyPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -31,7 +30,7 @@ public class MainPanel extends JPanel{
 
     private void customizeSelectionPanel(JPanel panel) {
         panel.setLayout(new FlowLayout());
-        panel.setBorder(new EmptyBorder(0,15,0,25));
+        panel.setBorder(new EmptyBorder(30,15,60,25));
         panel.setBackground(new Color(28,28,28));
     }
 

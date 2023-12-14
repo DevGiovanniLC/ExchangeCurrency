@@ -11,7 +11,7 @@ public class ComboLabel extends JPanel {
 
     public ComboLabel(String text, List<String> elements) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(new EmptyBorder(0,0,10,0));
+        setBorder(new EmptyBorder(0,0,15,0));
         setBackground(new Color(28,28,28));
 
         this.label = new Label(text + ": ");

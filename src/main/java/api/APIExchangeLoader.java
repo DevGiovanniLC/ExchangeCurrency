@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import interfaces.ExchangeLoader;
 import model.Currency;
@@ -17,36 +16,31 @@ import com.google.gson.JsonObject;
 
 
 public class APIExchangeLoader implements ExchangeLoader {
-    private Map<String,Double> currencyMap;
+    private Map<String,Double> ExchangeMap;
 
     public APIExchangeLoader(){
-        updateCurrencyMap("latest");
+        updateExchangeMap("latest");
     }
 
     @Override
-    public Map<String,Double> updateCurrencyMap(String date) {
-        this.currencyMap = loadCurrencyMap(date);
-        return this.currencyMap;
+    public Map<String,Double> updateExchangeMap(String date) {
+        this.ExchangeMap = loadExchangeMap(date);
+        return this.ExchangeMap;
     }
 
     @Override
     public ExchangeRate load(String from, String to) {
         return new ExchangeRate(
-           new Currency(from,currencyMap.get(from)),
-           new Currency(to, currencyMap.get(to))
+           new Currency(from, ExchangeMap.get(from)),
+           new Currency(to, ExchangeMap.get(to))
         );
     }
 
-    public List<String> getCurrencyList(){
-
-        return new ArrayList<>(this.currencyMap.keySet());
-    }
-
-    private Map<String,Double> loadCurrencyMap(String date) {
+    private Map<String,Double> loadExchangeMap(String date) {
         try {
             String json = loadJson(date
             );
-            return toCurrencyMap(json);
+            return toExchangeMap(json);
         } catch (IOException e) {
             return Collections.emptyMap();
         }
@@ -59,7 +53,7 @@ public class APIExchangeLoader implements ExchangeLoader {
         }
     }
 
-    private Map<String,Double> toCurrencyMap(String json) {
+    private Map<String,Double> toExchangeMap(String json) {
         HashMap<String, Double> result = new HashMap<>();
         Map<String, JsonElement> rates = new Gson().fromJson(json, JsonObject.class).get("rates").getAsJsonObject().asMap();
         for (String rate : rates.keySet())

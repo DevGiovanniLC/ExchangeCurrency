@@ -10,7 +10,7 @@ public class TextLabel extends JPanel {
 
     public TextLabel(String text) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(new EmptyBorder(10,0,0,0));
+        setBorder(new EmptyBorder(10,0,15,0));
         setBackground(new Color(28,28,28));
 
 
