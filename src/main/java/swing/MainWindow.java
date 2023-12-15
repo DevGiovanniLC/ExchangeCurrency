@@ -11,8 +11,8 @@ public class MainWindow extends JFrame {
     {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Exchange Currencies APP");
-        setSize(800,500);
-        setMinimumSize(new Dimension(300,550));
+        setSize(800,450);
+        setResizable(false);
         setLocationRelativeTo(null);
 
         this.mainPanel = new MainPanel(currencyList);

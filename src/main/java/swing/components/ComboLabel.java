@@ -14,7 +14,7 @@ public class ComboLabel extends JPanel {
         setBorder(new EmptyBorder(0,0,15,0));
         setBackground(new Color(28,28,28));
 
-        this.label = new Label(text + ": ");
+        this.label = new Label(text + " ");
         this.comboBox = new JComboBox<>(elements.toArray(new String[0]));
         customizeComponents();
         initializeComponents();

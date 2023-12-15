@@ -19,14 +19,14 @@ public class CurrencyPanel extends JPanel {
     public CurrencyPanel(List<String> currencyList) {
         super();
         setLayout(new FlowLayout());
-        setBorder(new EmptyBorder(50,5,50,5));
+        setBorder(new EmptyBorder(50,5,-50,5));
         setBackground(new Color(28,28,28));
         toCurrencyForm = new JPanel();
         fromCurrencyForm = new JPanel();
         this.textLabelFrom = new TextLabel("Amount to exchange");
         this.textLabelTo = new TextLabel("Amount exchanged");
-        this.comboLabelFrom = new ComboLabel("From Currency", currencyList);
-        this.comboLabelTo = new ComboLabel("To Currency", currencyList);
+        this.comboLabelFrom = new ComboLabel("", currencyList);
+        this.comboLabelTo = new ComboLabel("", currencyList);
         customizeForm(toCurrencyForm);
         customizeForm(fromCurrencyForm);
         initializeComponents();
