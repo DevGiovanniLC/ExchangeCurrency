@@ -11,14 +11,14 @@ import java.awt.*;
 public class CalendarLabel extends JPanel {
     UtilDateModel model;
     JDatePickerImpl datePicker;
-    Label label;
+    JLabel label;
 
     public CalendarLabel(String text) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(new EmptyBorder(0,0,25,50));
-        setBackground(new Color(28,28,28));
+        setBorder(new EmptyBorder(0,0,25,55));
+        setBackground(new Color(0,true));
 
-        this.label = new Label(text + ": ");
+        this.label = new JLabel(text + ": ");
         this.model = new UtilDateModel();
         this.model.setSelected(true);
         JDatePanelImpl datePanel = new JDatePanelImpl(model);
@@ -30,6 +30,7 @@ public class CalendarLabel extends JPanel {
     private void customizeComponents() {
         this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
         this.label.setForeground(Color.WHITE);
+        this.label.setOpaque(false);
     }
 
     private void initializeComponents(){

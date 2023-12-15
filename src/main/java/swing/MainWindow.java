@@ -11,6 +11,7 @@ public class MainWindow extends JFrame {
     {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Exchange Currencies APP");
+        setIconImage(new ImageIcon("src/main/resources/Icon.png").getImage());
         setSize(800,450);
         setResizable(false);
         setLocationRelativeTo(null);

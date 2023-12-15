@@ -19,8 +19,8 @@ public class CurrencyPanel extends JPanel {
     public CurrencyPanel(List<String> currencyList) {
         super();
         setLayout(new FlowLayout());
-        setBorder(new EmptyBorder(50,5,-50,5));
-        setBackground(new Color(28,28,28));
+        setBorder(new EmptyBorder(50,0,-50,0));
+        setBackground(new Color(0,true));
         toCurrencyForm = new JPanel();
         fromCurrencyForm = new JPanel();
         this.textLabelFrom = new TextLabel("Amount to exchange");
@@ -34,15 +34,15 @@ public class CurrencyPanel extends JPanel {
 
     private void customizeForm(JPanel form) {
         form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
-        form.setBorder(new EmptyBorder(0,30,0,30));
-        form.setBackground(new Color(28,28,28));
+        form.setBorder(new EmptyBorder(0,30,10,30));
+        form.setBackground(new Color(0,true));
     }
 
     private void initializeComponents() {
         this.add(this.fromCurrencyForm);
         this.add(this.toCurrencyForm);
         fromCurrencyForm.add(this.comboLabelFrom);
-        fromCurrencyForm.add(this.textLabelFrom);
+        fromCurrencyForm.add(this.textLabelFrom.setInitialValue(0.));
         toCurrencyForm.add(this.comboLabelTo);
         toCurrencyForm.add(this.textLabelTo.setEditable(false));
         toCurrencyForm.setVisible(true);
