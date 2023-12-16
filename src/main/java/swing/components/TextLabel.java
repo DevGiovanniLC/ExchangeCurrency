@@ -3,6 +3,7 @@ package swing.components;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.text.DecimalFormat;
 
 public class TextLabel extends JPanel {
     JTextField textField;
@@ -21,7 +22,7 @@ public class TextLabel extends JPanel {
     }
 
     public TextLabel setEditable(boolean bool){
-        textField.setFocusable(bool);
+        textField.setEditable(bool);
         return this;
     }
 
@@ -47,5 +48,22 @@ public class TextLabel extends JPanel {
     }
 
 
+    public double getAmountToExchange() {
+        try {
+            return Double.parseDouble(this.textField.getText());
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "\n" +
+                    "The amount to be exchanged must be a number", "To exchange Alert", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return 0;
+    }
 
+    public void setAmountExchanged(Double amount) {
+        this.textField.setText(formatDouble(amount));
+    }
+
+    private String formatDouble(Double amount){
+        DecimalFormat format = new DecimalFormat("#.###");
+        return format.format(amount);
+    }
 }

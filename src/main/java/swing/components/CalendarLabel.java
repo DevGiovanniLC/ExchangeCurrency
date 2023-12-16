@@ -1,5 +1,6 @@
 package swing.components;
 
+import net.sourceforge.jdatepicker.DateModel;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
@@ -7,6 +8,8 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.time.LocalDate;
+
 
 public class CalendarLabel extends JPanel {
     UtilDateModel model;
@@ -31,6 +34,17 @@ public class CalendarLabel extends JPanel {
         this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
         this.label.setForeground(Color.WHITE);
         this.label.setOpaque(false);
+        this.datePicker.getModel().addChangeListener(e -> {
+            
+            DateModel<?> model = datePicker.getModel();
+            System.out.println(model.getYear()+"-"+ model.getMonth()+"-"+ model.getDay());
+            LocalDate selectedDate = LocalDate.of(model.getYear(), model.getMonth(), model.getDay());
+            LocalDate actualDate = LocalDate.now();
+
+            if (selectedDate.isAfter(actualDate)){
+                     model.setDate(actualDate.getYear(),actualDate.getMonth().getValue(), actualDate.getDayOfMonth());
+            }
+        });
     }
 
     private void initializeComponents(){
@@ -39,8 +53,9 @@ public class CalendarLabel extends JPanel {
         setVisible(true);
     }
 
-    public String getSelectedDate(){
-          return model.getYear()+"-"+model.getMonth()+"-"+model.getDay();
+    public LocalDate getSelectedDate()
+    {
+          return LocalDate.of(model.getYear(),model.getMonth(),model.getDay());
     }
 
 }

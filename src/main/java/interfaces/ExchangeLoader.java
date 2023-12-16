@@ -1,12 +1,9 @@
 package interfaces;
 
-import model.ExchangeRate;
+import models.ExchangeRate;
 
-import java.util.Map;
+public interface ExchangeLoader {
+    ExchangeRate load(String from, String to, String date);
 
-public interface ExchangeLoader
-{
-     Map<String,Double> updateExchangeMap(String date);
-
-     ExchangeRate load(String from, String to);
+    void log(ExchangeRate exchangeRate);
 }

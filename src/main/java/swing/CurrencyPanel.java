@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.List;
+import models.Currency;
 
 public class CurrencyPanel extends JPanel {
     private final JPanel toCurrencyForm;
@@ -50,4 +51,19 @@ public class CurrencyPanel extends JPanel {
         setVisible(true);
     }
 
+    public double getAmountToExchange() {
+        return this.textLabelFrom.getAmountToExchange();
+    }
+
+    public String getCurrencyFrom() {
+        return this.comboLabelFrom.getCurrency();
+    }
+
+    public String getCurrencyTo() {
+        return this.comboLabelTo.getCurrency();
+    }
+
+    public void setAmountExchanged(Double amount) {
+        this.textLabelTo.setAmountExchanged(amount);
+    }
 }

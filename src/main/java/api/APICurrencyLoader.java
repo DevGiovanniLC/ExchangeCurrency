@@ -1,61 +1,46 @@
 package api;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import interfaces.CurrencyLoader;
+import interfaces.ReferenceRateLoader;
+import interfaces.SymbolLoader;
+import models.Currency;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class APICurrencyLoader implements CurrencyLoader {
 
-    private final Map<String,String> CurrencyMap;
+    private final ReferenceRateLoader referenceValuesLoader;
+    public Map<String, String> symbols;
 
-    public APICurrencyLoader(){
-        this.CurrencyMap = load();
+    public APICurrencyLoader(ReferenceRateLoader referenceValuesLoader, SymbolLoader symbols) {
+        this.referenceValuesLoader = referenceValuesLoader;
+        this.symbols = symbols.load();
     }
 
     @Override
-    public Map<String,String> load() {
-        try {
-            String json = loadJson();
-            return toCurrencyMap(json);
-        } catch (IOException e) {
-            return Collections.emptyMap();
-        }
+    public List<Currency> loadCurrencies() {
+        return loadCurrencies("latest");
     }
 
     @Override
-    public List<String> getCurrencyList() {
-        List<String> result = new ArrayList<>();
+    public List<Currency> loadCurrencies(String date) {
+        Map<String, Double> values = referenceValuesLoader.load(date);
 
-        for (Map.Entry<String, String> entry : this.CurrencyMap.entrySet()) {
-            String string = entry.getKey() + ", " + entry.getValue();
-            result.add(string);
-        }
-
-        Collections.sort(result);
-
-        return result;
+        return symbols
+                .keySet()
+                .stream()
+                .sorted()
+                .map((String symbol) -> symbolToCurrency(symbol,date))
+                .collect(Collectors.toList()
+                );
     }
 
-    private String loadJson() throws IOException {
-        URL url = new URL("http://api.exchangeratesapi.io/v1/symbols?access_key=51c96297a100c0fe9be7e64d682e577a");
-        try (InputStream is = url.openStream()) {
-            return new String(is.readAllBytes());
-        }
-    }
 
-    private Map<String,String> toCurrencyMap(String json) {
-        HashMap<String, String> result = new HashMap<>();
-        Map<String, JsonElement> rates = new Gson().fromJson(json, JsonObject.class).get("symbols").getAsJsonObject().asMap();
-        for (String rate : rates.keySet())
-            result.put(rate,  rates.get(rate).getAsString());
-        return result;
-    }
+    private Currency symbolToCurrency(String symbol,String date){
+        Map<String, Double> values = referenceValuesLoader.load(date);
 
+        return new Currency(symbol, symbols.get(symbol), values.get(symbol));
+    }
 }

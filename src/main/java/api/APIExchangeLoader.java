@@ -1,64 +1,56 @@
 package api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.*;
-
 import interfaces.ExchangeLoader;
-import model.Currency;
-import model.ExchangeRate;
+import interfaces.ReferenceRateLoader;
+import interfaces.SymbolLoader;
+import models.Currency;
+import models.ExchangeRate;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Map;
 
 public class APIExchangeLoader implements ExchangeLoader {
-    private Map<String,Double> ExchangeMap;
 
-    public APIExchangeLoader(){
-        updateExchangeMap("latest");
+    private final ReferenceRateLoader referenceValuesLoader;
+    private final Map<String, String> symbols;
+
+    public APIExchangeLoader(ReferenceRateLoader referenceRateLoader, SymbolLoader symbols) {
+        this.referenceValuesLoader = referenceRateLoader;
+        this.symbols =  symbols.load();
     }
 
     @Override
-    public Map<String,Double> updateExchangeMap(String date) {
-        this.ExchangeMap = loadExchangeMap(date);
-        return this.ExchangeMap;
-    }
-
-    @Override
-    public ExchangeRate load(String from, String to) {
+    public ExchangeRate load(String from, String to, String date) {
         return new ExchangeRate(
-           new Currency(from, ExchangeMap.get(from)),
-           new Currency(to, ExchangeMap.get(to))
+                symbolToCurrency(from, date),
+                symbolToCurrency(to, date),
+                date
         );
     }
 
-    private Map<String,Double> loadExchangeMap(String date) {
+    @Override
+    public void log(ExchangeRate exchangeRate) {
         try {
-            String json = loadJson(date
-            );
-            return toExchangeMap(json);
+              writeFile(exchangeRate,false);
         } catch (IOException e) {
-            return Collections.emptyMap();
+            try {
+                writeFile(exchangeRate, true);
+            } catch (IOException ignored) {
+            }
         }
     }
 
-    private String loadJson(String date) throws IOException {
-        URL url = new URL(String.format("http://api.exchangeratesapi.io/v1/%s?access_key=51c96297a100c0fe9be7e64d682e577a&base=EUR",date));
-        try (InputStream is = url.openStream()) {
-            return new String(is.readAllBytes());
-        }
+    private void writeFile(ExchangeRate exchangeRate, boolean bool) throws IOException {
+        FileWriter fileWriter = new FileWriter("src/main/ExchangeRates.log",bool);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(exchangeRate.toString());
     }
 
-    private Map<String,Double> toExchangeMap(String json) {
-        HashMap<String, Double> result = new HashMap<>();
-        Map<String, JsonElement> rates = new Gson().fromJson(json, JsonObject.class).get("rates").getAsJsonObject().asMap();
-        for (String rate : rates.keySet())
-            result.put(rate,  rates.get(rate).getAsDouble());
-        return result;
-    }
+    private Currency symbolToCurrency(String symbol, String date){
+        Map<String, Double> values = referenceValuesLoader.load(date);
 
+        return new Currency(symbol, symbols.get(symbol), values.get(symbol));
+    }
 }

@@ -32,4 +32,7 @@ public class ComboLabel extends JPanel {
         setVisible(true);
     }
 
+    public String getCurrency() {
+        return (String) this.comboBox.getSelectedItem();
+    }
 }

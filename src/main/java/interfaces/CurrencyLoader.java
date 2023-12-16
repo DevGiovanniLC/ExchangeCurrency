@@ -1,12 +1,14 @@
 package interfaces;
 
+import models.Currency;
+import models.ExchangeRate;
 
 import java.util.List;
-import java.util.Map;
 
-public interface CurrencyLoader
-{
-     Map<String, String> load();
+public interface CurrencyLoader {
+    List<Currency> loadCurrencies();
 
-     List<String> getCurrencyList();
+    List<Currency> loadCurrencies(String date);
+
+
 }
