@@ -65,11 +65,11 @@ public class MainPanel extends JPanel{
         return this.currencyPanel.getCurrencyTo();
     }
 
-    public void setAmountExchanged(Double amount) {
+    protected void setAmountExchanged(Double amount) {
         this.currencyPanel.setAmountExchanged(amount);
     }
 
-    public JButton getExchangeButton() {
+    protected JButton getExchangeButton() {
         return this.selectionPanel.getExchangeButton();
     }
 }

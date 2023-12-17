@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.List;
-import models.Currency;
+
 
 public class CurrencyPanel extends JPanel {
     private final JPanel toCurrencyForm;

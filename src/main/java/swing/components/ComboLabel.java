@@ -23,6 +23,8 @@ public class ComboLabel extends JPanel {
     private void customizeComponents() {
         this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
         this.label.setForeground(Color.WHITE);
+        this.comboBox.setFont(new Font("Arial", Font.BOLD, 13));
+        this.comboBox.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.setOpaque(false);
     }
 

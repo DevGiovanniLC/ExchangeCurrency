@@ -38,7 +38,7 @@ public class TextLabel extends JPanel {
         this.label.setBorder(new EmptyBorder(0,0,5,0));
         this.label.setOpaque(false);
         this.textField.setBorder(new EmptyBorder(5,10,5,5));
-        this.textField.setFont(new Font("Arial", Font.BOLD, 14));
+        this.textField.setFont(new Font("Arial", Font.BOLD, 16));
     }
 
     private void initializeComponents(){

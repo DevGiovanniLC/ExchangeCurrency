@@ -22,7 +22,6 @@ public class ExchangeCommand implements Command {
         String to = this.command.getCurrencyTo();
         double amountToExchange = this.command.getAmountToExchange();
         ExchangeRate exchangeRate = this.exchangeLoader.load(from,to,date.toString());
-        this.command.setAmountExchanged(exchangeRate.getRate()*amountToExchange);
-        this.exchangeLoader.log(exchangeRate);
+        this.command.setAmountExchanged(amountToExchange/exchangeRate.getRate());
     }
 }

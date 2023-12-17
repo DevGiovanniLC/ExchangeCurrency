@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class SelectionPanel extends JPanel {
 
     private final CalendarLabel selectedDate;
-    private final JButton Exchangebutton;
+    private final JButton exchangeButton;
     private final JLabel icon;
 
     public SelectionPanel() {
@@ -19,7 +19,7 @@ public class SelectionPanel extends JPanel {
         setBorder(new EmptyBorder(10,0,0,0));
 
         this.selectedDate = new CalendarLabel("Selected Date");
-        this.Exchangebutton = new JButton("Exchange");
+        this.exchangeButton = new JButton("Exchange");
         this.icon = new JLabel(new ImageIcon("src/main/resources/Icon.png"));
 
         customizeComponents();
@@ -32,9 +32,10 @@ public class SelectionPanel extends JPanel {
 
 
     private void customizeComponents() {
-        Exchangebutton.setFont(new Font("Arial", Font.BOLD, 20));
-        Exchangebutton.setBorder(new EmptyBorder(10,20,10,20));
-        Exchangebutton.setSize(300,300);
+        exchangeButton.setFont(new Font("Arial", Font.BOLD, 20));
+        exchangeButton.setBorder(new EmptyBorder(10,20,10,20));
+        exchangeButton.setSize(300,300);
+        exchangeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         icon.setOpaque(false);
         icon.setBorder(new EmptyBorder(0,60,0,20));
@@ -42,11 +43,11 @@ public class SelectionPanel extends JPanel {
 
     private void initializeComponents() {
              add(selectedDate);
-             add(Exchangebutton);
+             add(exchangeButton);
              add(icon);
     }
 
     public JButton getExchangeButton() {
-        return this.Exchangebutton;
+        return this.exchangeButton;
     }
 }

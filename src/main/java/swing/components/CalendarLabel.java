@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 public class CalendarLabel extends JPanel {
     UtilDateModel model;
+    JDatePanelImpl datePanel;
     JDatePickerImpl datePicker;
     JLabel label;
 
@@ -24,7 +25,7 @@ public class CalendarLabel extends JPanel {
         this.label = new JLabel(text + ": ");
         this.model = new UtilDateModel();
         this.model.setSelected(true);
-        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+        datePanel = new JDatePanelImpl(model);
         this.datePicker = new JDatePickerImpl(datePanel);
         customizeComponents();
         initializeComponents();
@@ -34,15 +35,17 @@ public class CalendarLabel extends JPanel {
         this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
         this.label.setForeground(Color.WHITE);
         this.label.setOpaque(false);
+        this.datePicker.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        this.datePanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         this.datePicker.getModel().addChangeListener(e -> {
             
             DateModel<?> model = datePicker.getModel();
-            System.out.println(model.getYear()+"-"+ model.getMonth()+"-"+ model.getDay());
-            LocalDate selectedDate = LocalDate.of(model.getYear(), model.getMonth(), model.getDay());
+            LocalDate selectedDate = LocalDate.of(model.getYear(), model.getMonth()+1, model.getDay());
             LocalDate actualDate = LocalDate.now();
 
             if (selectedDate.isAfter(actualDate)){
-                     model.setDate(actualDate.getYear(),actualDate.getMonth().getValue(), actualDate.getDayOfMonth());
+                     model.setDate(actualDate.getYear(),actualDate.getMonth().getValue()-1, actualDate.getDayOfMonth());
             }
         });
     }
@@ -55,7 +58,7 @@ public class CalendarLabel extends JPanel {
 
     public LocalDate getSelectedDate()
     {
-          return LocalDate.of(model.getYear(),model.getMonth(),model.getDay());
+          return LocalDate.of(model.getYear(),model.getMonth()+1,model.getDay());
     }
 
 }
