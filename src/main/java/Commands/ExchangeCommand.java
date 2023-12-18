@@ -6,10 +6,10 @@ import models.*;
 import java.time.LocalDate;
 
 public class ExchangeCommand implements Command {
-    CommandWindow command;
+    CommandInterface command;
     ExchangeLoader exchangeLoader;
 
-    public ExchangeCommand(CommandWindow window, ExchangeLoader exchangeLoader) {
+    public ExchangeCommand(CommandInterface window, ExchangeLoader exchangeLoader) {
        this.command = window;
        this.exchangeLoader = exchangeLoader;
     }

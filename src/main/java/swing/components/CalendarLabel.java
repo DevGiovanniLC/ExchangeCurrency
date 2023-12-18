@@ -19,10 +19,10 @@ public class CalendarLabel extends JPanel {
 
     public CalendarLabel(String text) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(new EmptyBorder(0,0,25,55));
+        setBorder(new EmptyBorder(0,0,25,30));
         setBackground(new Color(0,true));
 
-        this.label = new JLabel(text + ": ");
+        this.label = new JLabel(text);
         this.model = new UtilDateModel();
         this.model.setSelected(true);
         datePanel = new JDatePanelImpl(model);
@@ -32,11 +32,11 @@ public class CalendarLabel extends JPanel {
     }
 
     private void customizeComponents() {
-        this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
+        this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 18));
         this.label.setForeground(Color.WHITE);
         this.label.setOpaque(false);
+        this.label.setBorder(new EmptyBorder(0,5,5,0));
         this.datePicker.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        this.datePanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         this.datePicker.getModel().addChangeListener(e -> {
             

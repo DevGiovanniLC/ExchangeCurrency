@@ -11,7 +11,7 @@ public class ComboLabel extends JPanel {
 
     public ComboLabel(String text, List<String> elements) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(new EmptyBorder(0,0,15,0));
+        setBorder(new EmptyBorder(0,0,25,0));
         setBackground(new Color(0,true));
 
         this.label = new JLabel(text + " ");
@@ -21,9 +21,9 @@ public class ComboLabel extends JPanel {
     }
 
     private void customizeComponents() {
-        this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
+        this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 18));
         this.label.setForeground(Color.WHITE);
-        this.comboBox.setFont(new Font("Arial", Font.BOLD, 13));
+        this.comboBox.setFont(new Font("Arial", Font.BOLD, 14));
         this.comboBox.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.setOpaque(false);
     }

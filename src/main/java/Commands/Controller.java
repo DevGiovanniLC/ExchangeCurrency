@@ -1,7 +1,7 @@
 package Commands;
 
 import interfaces.Command;
-import interfaces.CommandWindow;
+import interfaces.CommandInterface;
 import interfaces.ExchangeLoader;
 
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import java.util.Map;
 public class Controller {
     Map<String, Command> commandMap;
 
-    public Controller(CommandWindow window, ExchangeLoader exchangeLoader) {
+    public Controller(CommandInterface window, ExchangeLoader exchangeLoader) {
         this.commandMap = new HashMap<>();
         this.commandMap.put("exchange", new ExchangeCommand(window, exchangeLoader));
     }

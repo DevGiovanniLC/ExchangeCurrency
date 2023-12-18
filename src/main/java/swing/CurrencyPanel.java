@@ -19,8 +19,8 @@ public class CurrencyPanel extends JPanel {
 
     public CurrencyPanel(List<String> currencyList) {
         super();
-        setLayout(new FlowLayout());
-        setBorder(new EmptyBorder(50,0,-50,0));
+        setLayout(new GridLayout());
+        setBorder(new EmptyBorder(20,0, 0,0));
         setBackground(new Color(0,true));
         toCurrencyForm = new JPanel();
         fromCurrencyForm = new JPanel();

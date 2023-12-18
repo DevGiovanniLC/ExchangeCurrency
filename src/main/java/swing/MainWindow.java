@@ -1,7 +1,7 @@
 package swing;
 
 import Commands.Controller;
-import interfaces.CommandWindow;
+import interfaces.CommandInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public class MainWindow extends JFrame implements CommandWindow {
+public class MainWindow extends JFrame implements CommandInterface {
 
     private final MainPanel mainPanel;
     public MainWindow(List<String> currencyList) throws HeadlessException
@@ -17,7 +17,7 @@ public class MainWindow extends JFrame implements CommandWindow {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Exchange Currencies APP");
         setIconImage(new ImageIcon("src/main/resources/Icon.png").getImage());
-        setSize(800,450);
+        setSize(700,370);
         setResizable(false);
         setLocationRelativeTo(null);
 
@@ -57,8 +57,7 @@ public class MainWindow extends JFrame implements CommandWindow {
         this.mainPanel.setAmountExchanged(amount);
     }
 
-    @Override
-    public void setController(Controller controller) {
+    public void setExchangeCommand(Controller controller) {
         JButton exchangeButton = this.mainPanel.getExchangeButton();
         exchangeButton.addActionListener(e -> controller.execute("exchange"));
     }

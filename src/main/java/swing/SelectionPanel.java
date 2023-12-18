@@ -16,7 +16,7 @@ public class SelectionPanel extends JPanel {
     public SelectionPanel() {
         setLayout(new FlowLayout());
         setBackground(new Color(0,true));
-        setBorder(new EmptyBorder(10,0,0,0));
+        setBorder(new EmptyBorder(5,0,15,0));
 
         this.selectedDate = new CalendarLabel("Selected Date");
         this.exchangeButton = new JButton("Exchange");
@@ -38,7 +38,7 @@ public class SelectionPanel extends JPanel {
         exchangeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         icon.setOpaque(false);
-        icon.setBorder(new EmptyBorder(0,60,0,20));
+        icon.setBorder(new EmptyBorder(-10,40,-5,5));
     }
 
     private void initializeComponents() {

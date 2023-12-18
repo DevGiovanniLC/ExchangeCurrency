@@ -11,7 +11,7 @@ public class TextLabel extends JPanel {
 
     public TextLabel(String text) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(new EmptyBorder(10,0,15,0));
+        setBorder(new EmptyBorder(0,0,0,0));
         setBackground(new Color(0,true));
 
 
@@ -33,12 +33,12 @@ public class TextLabel extends JPanel {
 
 
     private void customizeComponents() {
-        this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
+        this.label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 18));
         this.label.setForeground(Color.WHITE);
         this.label.setBorder(new EmptyBorder(0,0,5,0));
         this.label.setOpaque(false);
-        this.textField.setBorder(new EmptyBorder(5,10,5,5));
-        this.textField.setFont(new Font("Arial", Font.BOLD, 16));
+        this.textField.setBorder(new EmptyBorder(3,10,3,5));
+        this.textField.setFont(new Font("Arial", Font.BOLD, 20));
     }
 
     private void initializeComponents(){

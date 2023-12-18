@@ -1,10 +1,8 @@
 package interfaces;
 
-import Commands.Controller;
-
 import java.time.LocalDate;
 
-public interface CommandWindow {
+public interface CommandInterface {
 
     LocalDate getSelectedDate();
 
@@ -16,5 +14,4 @@ public interface CommandWindow {
 
     void setAmountExchanged(Double amount);
 
-    void setController(Controller controller);
 }
