@@ -41,6 +41,8 @@ public class APISymbolLoader implements SymbolLoader {
             String json = loadJson();
             return toCurrencyMap(json);
         } catch (IOException e) {
+            System.out.println("ERROR: Expired API change it from the code");
+            System.exit(1);
             return Collections.emptyMap();
         }
     }
