@@ -35,6 +35,8 @@ public class APIReferenceRateLoader implements ReferenceRateLoader {
             );
             return toReferenceValueMap(json);
         } catch (IOException e) {
+            System.out.println("ERROR: Expired API change it from the code");
+            System.exit(1);
             return Collections.emptyMap();
         }
     }
