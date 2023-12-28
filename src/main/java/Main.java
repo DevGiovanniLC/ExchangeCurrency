@@ -1,7 +1,9 @@
-import Commands.Controller;
-import api.*;
-import interfaces.*;
-import swing.MainWindow;
+import controller.Controller;
+import view.ExchangeLoader;
+import view.ReferenceRateLoader;
+import view.SymbolLoader;
+import view.api.*;
+import view.swing.MainWindow;
 
 public class Main {
 
