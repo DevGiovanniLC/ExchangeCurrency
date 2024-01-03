@@ -1,4 +1,4 @@
- # Currency Exchange with Graphical Interface
+ # Currency Exchange (Graphical Interface)
 
 <br><br>
 ### Software Usage
@@ -21,3 +21,5 @@ The software is built in Java, making use of the JavaSwing framework oriented to
 ***
 The API used to obtain the currency values is managed on this website: https://exchangeratesapi.io/.<br>
 Key dependencies of the software include GSON, used for JSON deserialization, and jdatepicker, used to provide a better user experience when selecting a date for currency exchange.
+
+<br><br>
