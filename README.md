@@ -1,4 +1,4 @@
- # Currency Exchange (Graphical Interface)
+ # Currency Exchanger (Graphical Interface)
 
 <br><br>
 ### Software Usage
