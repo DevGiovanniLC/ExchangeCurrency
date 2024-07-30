@@ -1,4 +1,8 @@
- # Currency Exchanger (Graphical Interface)
+<div align="center">
+ <img src="https://github.com/user-attachments/assets/197f71c3-380c-4031-9b57-30b41586a448" width="250" height="250"/>
+</div>
+
+# Currency Exchanger (Graphical Interface)
 
 <br><br>
 ### Software Usage
